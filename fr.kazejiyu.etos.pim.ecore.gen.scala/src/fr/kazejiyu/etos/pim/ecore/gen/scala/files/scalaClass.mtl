@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module scalaClass('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::paths /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::documentation /]
+
+[template public genClassFile(aGenClass: GenClass)]
+[file (aGenClass.genFilePath(), false, 'UTF-8')]
+package [aGenClass.genPackage.basePackage/]
+
+[aGenClass.genClassScalaDoc()/]
+class [aGenClass.genClassName()/]() {
+
+}
+[/file]
+[/template]

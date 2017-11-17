@@ -25,17 +25,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'Generate' generation module.
+ * Entry point of the 'Etos' generation module.
  *
  * @generated
  */
-public class Generate extends AbstractAcceleoGenerator {
+public class Etos extends AbstractAcceleoGenerator {
     /**
      * The name of the module.
      *
      * @generated
      */
-    public static final String MODULE_FILE_NAME = "/fr/kazejiyu/etos/pim/ecore/gen/scala/main/generate";
+    public static final String MODULE_FILE_NAME = "/fr/kazejiyu/etos/pim/ecore/gen/scala/main/etos";
     
     /**
      * The name of the templates that are to be generated.
@@ -65,7 +65,7 @@ public class Generate extends AbstractAcceleoGenerator {
      *
      * @generated
      */
-    public Generate() {
+    public Etos() {
         // Empty implementation
     }
 
@@ -85,7 +85,7 @@ public class Generate extends AbstractAcceleoGenerator {
      *             the model cannot be loaded.
      * @generated
      */
-    public Generate(URI modelURI, File targetFolder,
+    public Etos(URI modelURI, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(modelURI, targetFolder, arguments);
     }
@@ -106,7 +106,7 @@ public class Generate extends AbstractAcceleoGenerator {
      *             This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
      * @generated
      */
-    public Generate(EObject model, File targetFolder,
+    public Etos(EObject model, File targetFolder,
             List<? extends Object> arguments) throws IOException {
         initialize(model, targetFolder, arguments);
     }
@@ -141,7 +141,7 @@ public class Generate extends AbstractAcceleoGenerator {
                  * add in "arguments" this "String" attribute.
                  */
                 
-                Generate generator = new Generate(modelURI, folder, arguments);
+                Etos generator = new Etos(modelURI, folder, arguments);
                 
                 /*
                  * Add the properties from the launch arguments.
@@ -340,8 +340,8 @@ public class Generate extends AbstractAcceleoGenerator {
     @Override
     public void registerPackages(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(org.eclipse.emf.ecore.EcorePackage.class)) {
-            resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
+        if (!isInWorkspace(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE.getNsURI(), org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage.eINSTANCE);
         }
         
         /*

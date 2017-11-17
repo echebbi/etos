@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[**
+ * Utility templates to deal with a file's path.
+ */]
+[module paths('http://www.eclipse.org/emf/2002/GenModel')]
+
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::names /]
+
+[template private genRoot(aGenClass: GenClass)]
+[aGenClass.genPackage.genModel.modelDirectory/]
+[/template]
+
+[template public genClassPath(aGenClass: GenClass)]
+[comment][aGenClass.genRoot()/]/[/comment]
+[aGenClass.genPackage.basePackage/]
+[/template]
+
+[template public genFilePath(aGenClass : GenClass) post(replaceAll('\n', '').trim())]
+[aGenClass.genPackage.basePackage.substituteAll('.', '/')/]/[aGenClass.genClassName()/].scala
+[/template]
