@@ -13,8 +13,23 @@
 package [aGenClass.genPackage.basePackage/]
 
 [aGenClass.genClassScalaDoc()/]
-class [aGenClass.genClassName()/]() {
-
+[aGenClass.genAbstract()/]class [aGenClass.genClassName()/]() {
+    [aGenClass.genFields()/]
 }
 [/file]
+[/template]
+
+[** Generates "abstract" if the class is abstract */]
+[template private genAbstract(aGenClass: GenClass) post(trim())]
+[if (aGenClass.ecoreClass.abstract)]abstract [/if]
+[/template]
+
+[template private genFields(aGenClass: GenClass)]
+[for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
+[anEAttribute.genModifier()/] [anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceTypeName/] = [anEAttribute.defaultValue/]
+[/for]
+[/template]
+
+[template private genModifier(anEAttribute: EAttribute) post(trim())]
+[if (anEAttribute.unsettable)]val[else]var[/if]
 [/template]
