@@ -1,0 +1,24 @@
+[comment encoding = UTF-8 /]
+[**
+ * Utility templates to deal with a file's path.
+ */]
+[module conversion('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+
+[template public genTypeName(anEAttribute: EAttribute)]
+[anEAttribute.eAttributeType.instanceClassName.genScalaType().genSimpleName()/]
+[/template]
+
+[template public genSimpleName(aString: String) post(trim())]
+[if (aString.contains('.'))][aString.substring(aString.lastIndex('.') + 1)/][else][aString/][/if]
+[/template]
+
+[template public genScalaType(aString: String) post(trim())]
+[if (aString = 'double')]scala.Double
+[elseif (aString = 'java.lang.Double')]scala.Double
+[elseif (aString = 'int')]scala.Int
+[elseif (aString = 'java.lang.Int')]scala.Int
+[elseif (aString = 'float')]scala.Float
+[elseif (aString = 'java.lang.Float')]scala.Float
+[else][aString /]
+[/if]
+[/template]

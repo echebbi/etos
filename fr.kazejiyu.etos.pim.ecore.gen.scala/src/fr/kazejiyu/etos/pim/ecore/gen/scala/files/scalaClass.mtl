@@ -6,6 +6,7 @@
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::paths /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::documentation /]
 
 [template public genClassFile(aGenClass: GenClass)]
@@ -30,7 +31,7 @@ package [aGenClass.genPackage.basePackage/]
 
 [template private genFields(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/] = [anEAttribute.defaultValue/]
+private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
 [/for]
 [/template]
 
@@ -40,12 +41,12 @@ private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttri
 
 [template private genGetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-def [anEAttribute.genGetterName()/]: [anEAttribute.eAttributeType.instanceClassName/] = [anEAttribute.genFieldName()/]
+def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttribute.genFieldName()/]
 [/for]
 [/template]
 
 [template private genSetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-[if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]
+[if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]
 [/for]
 [/template]
