@@ -1,5 +1,5 @@
 /**
- * Acceleo templates amking able to generate a Scala class.
+ * Acceleo templates making able to generate a Scala class.
  * 
  * @author Emmanuel CHEBBI
  */

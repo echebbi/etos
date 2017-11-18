@@ -6,7 +6,7 @@
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
 
-[template public genClassScalaDoc(aGenClass: GenClass)]
+[template public genScalaDoc(aGenClass: GenClass)]
 /**
  * Documentation of [aGenClass.genClassName()/].
  */

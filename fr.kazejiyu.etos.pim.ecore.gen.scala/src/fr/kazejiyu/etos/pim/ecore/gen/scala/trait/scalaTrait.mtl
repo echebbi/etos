@@ -1,0 +1,53 @@
+[comment encoding = UTF-8 /]
+[**
+ * The documentation of the module generate.
+ */]
+[module scalaTrait('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::trait::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::trait::documentation /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::paths /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
+
+[** Generates the .scala file corresponding to the class */]
+[template public genTraitFile(aGenClass: GenClass)]
+[file (aGenClass.genFilePath(), false, 'UTF-8')]
+package [aGenClass.genPackage.basePackage/]
+
+[aGenClass.genScalaDoc()/]
+trait [aGenClass.genClassName()/] [aGenClass.genInheritance()/] {
+   [aGenClass.genMethods()/]
+}
+[/file]
+[/template]
+
+[** Generates inheritance */]
+[template private genInheritance(aGenClass: GenClass) post(trim())]
+[if (not aGenClass.ecoreClass.eSuperTypes->isEmpty())]
+[if (not aGenClass.mixins()->isEmpty())]
+extends [aGenClass.firstMixin().genTypeName()/][for (aMixin: EClass | aGenClass.mixins()->excluding(aGenClass.firstMixin()))] with [aMixin.genTypeName()/][/for]
+[/if]
+[/if]
+[/template]
+
+[** Returns the first mixin used by the trait */]
+[query private firstMixin(aGenClass: GenClass): EClass =
+	aGenClass.mixins()->first()
+/]
+
+[** Queries the mixins used by the trait */]
+[query private mixins(aGenClass: GenClass): OrderedSet(EClass) =
+	aGenClass.ecoreClass.eSuperTypes->select(anEClass: EClass | anEClass.interface)
+/]
+
+[** Generates class' methods */]
+[template private genMethods(aGenClass: GenClass)]
+[for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
+def [anEOperation.name/]([anEOperation.genParameters()/])
+[/for]
+[/template]
+
+[** Generates the parameters of a method */]
+[template private genParameters(anEOperation: EOperation) post(replaceAll('\n', ''))]
+[for( anEParameter: EParameter | anEOperation.eParameters) separator(', ')][anEParameter.name/]: [anEParameter.eType.instanceTypeName.genSimpleName()/][/for]
+[/template]
