@@ -17,6 +17,7 @@ package [aGenClass.genPackage.basePackage/]
     [aGenClass.genFields()/]
 
     [aGenClass.genGetters()/]
+
     [aGenClass.genSetters()/]
 }
 [/file]
@@ -37,14 +38,14 @@ private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttri
 [if (anEAttribute.unsettable)]val[else]var[/if]
 [/template]
 
-[template private genGetters(aGenClass: GenClass)]
+[template private genGetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
 def [anEAttribute.genGetterName()/]: [anEAttribute.eAttributeType.instanceClassName/] = [anEAttribute.genFieldName()/]
 [/for]
 [/template]
 
-[template private genSetters(aGenClass: GenClass)]
+[template private genSetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/]
+[if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]
 [/for]
 [/template]
