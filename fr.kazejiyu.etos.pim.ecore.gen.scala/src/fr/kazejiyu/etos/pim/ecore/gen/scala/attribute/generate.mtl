@@ -4,14 +4,14 @@
  */]
 [module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
-[template public genFieldName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.name.toLowerFirst()/]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
+
+[template public genField(anEAttribute: EAttribute)]
+private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
 [/template]
 
-[template public genSetterName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.genFieldName()/]_=
-[/template]
-
-[template public genGetterName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.genFieldName()/]
+[** Generates either "val" or "var" according to field's visibility */]
+[template private genModifier(anEAttribute: EAttribute) post(trim())]
+[if (anEAttribute.unsettable)]val[else]var[/if]
 [/template]

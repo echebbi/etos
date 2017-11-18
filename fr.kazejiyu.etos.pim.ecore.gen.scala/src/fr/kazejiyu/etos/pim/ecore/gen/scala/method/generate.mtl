@@ -2,29 +2,35 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module genMethod('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
-[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::generate /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::method::documentation /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
 [** Generates class' getters */]
 [template public genGetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
+[anEAttribute.genGetterScalaDoc()/]
 def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttribute.genFieldName()/]
+
 [/for]
 [/template]
 
 [** Generates class' setters */]
 [template public genSetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
+[if not (anEAttribute.unsettable)][anEAttribute.genSetterScalaDoc()/][/if]
 [if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]
+
 [/for]
 [/template]
 
 [** Generates class' methods */]
 [template public genMethods(aGenClass: GenClass) post(trim())]
 [for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
+[anEOperation.genScalaDoc()/]
 def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameters()/])
 [/for]
 [/template]

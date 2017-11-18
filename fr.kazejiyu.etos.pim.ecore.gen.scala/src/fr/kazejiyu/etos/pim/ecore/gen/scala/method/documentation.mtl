@@ -11,3 +11,11 @@
  * Does ...
  */
 [/template]
+
+[template public genSetterScalaDoc(anEAttribute: EAttribute)]
+/** Sets the value of [anEAttribute.name/] */
+[/template]
+
+[template public genGetterScalaDoc(anEAttribute: EAttribute)]
+/** @return the value of [anEAttribute.name/] */
+[/template]
