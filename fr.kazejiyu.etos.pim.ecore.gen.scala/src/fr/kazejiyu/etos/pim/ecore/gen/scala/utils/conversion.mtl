@@ -19,7 +19,11 @@
 [module conversion('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [template public genTypeName(anEAttribute: EAttribute)]
-[anEAttribute.eAttributeType.instanceClassName.genScalaType().genSimpleName()/]
+[anEAttribute.eType.instanceClassName.genScalaType().genSimpleName()/]
+[/template]
+
+[template public genTypeName(anEReference: EReference)]
+[anEReference.eReferenceType.name.genScalaType().genSimpleName()/]
 [/template]
 
 [template public genTypeName(anEParameter: EParameter)]

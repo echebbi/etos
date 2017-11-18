@@ -29,10 +29,10 @@
 	invoke('fr.kazejiyu.etos.pim.ecore.gen.scala.clazz.EClassUtils', 'genAnnotatedDocumentation(org.eclipse.emf.ecore.EModelElement)', Sequence{aGenClass.ecoreClass})
 /]
 
-[query public hasAnnotatedDocumentation(anEAttribute: EAttribute): Boolean =
-	invoke('fr.kazejiyu.etos.pim.ecore.gen.scala.clazz.EClassUtils', 'hasAnnotatedDocumentation(org.eclipse.emf.ecore.EModelElement)', Sequence{anEAttribute})
+[query public hasAnnotatedDocumentation(anEModelElement: EModelElement): Boolean =
+	invoke('fr.kazejiyu.etos.pim.ecore.gen.scala.clazz.EClassUtils', 'hasAnnotatedDocumentation(org.eclipse.emf.ecore.EModelElement)', Sequence{anEModelElement})
 /]
 
-[query public genAnnotatedDocumentation(anEAttribute: EAttribute): String =
+[query public genAnnotatedDocumentation(anEAttribute: EModelElement): String =
 	invoke('fr.kazejiyu.etos.pim.ecore.gen.scala.clazz.EClassUtils', 'genAnnotatedDocumentation(org.eclipse.emf.ecore.EModelElement)', Sequence{anEAttribute})
 /]

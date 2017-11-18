@@ -18,7 +18,7 @@
  */]
 [module names('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
-[template public genFieldName(anEAttribute: EAttribute) post(trim())]
+[template public genFieldName(anEAttribute: EStructuralFeature) post(trim())]
 [anEAttribute.name.toLowerFirst()/]
 [/template]
 

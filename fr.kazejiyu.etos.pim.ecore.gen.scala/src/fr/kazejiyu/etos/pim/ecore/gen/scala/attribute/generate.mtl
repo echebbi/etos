@@ -23,11 +23,14 @@
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
 [template public genField(anEAttribute: EAttribute)]
-[anEAttribute.genScalaDoc()/]
-private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
+[anEAttribute.genScalaDoc()/]private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
+[/template]
+
+[template public genField(anEReference: EReference)]
+[anEReference.genScalaDoc()/]private [anEReference.genModifier()/] _[anEReference.genFieldName()/]: [anEReference.genTypeName()/] = null
 [/template]
 
 [** Generates either "val" or "var" according to field's visibility */]
-[template private genModifier(anEAttribute: EAttribute) post(trim())]
-[if (anEAttribute.unsettable)]val[else]var[/if]
+[template private genModifier(anEStructuralFeature: EStructuralFeature) post(trim())]
+[if (anEStructuralFeature.unsettable)]val[else]var[/if]
 [/template]

@@ -81,4 +81,8 @@ extends [aGenClass.firstMixin().genTypeName()/][for (aMixin: EClass | aGenClass.
 [anEAttribute.genField()/]
 
 [/for]
+[for (anEReference: EReference | aGenClass.ecoreClass.eReferences)]
+[anEReference.genField()/]
+
+[/for]
 [/template]

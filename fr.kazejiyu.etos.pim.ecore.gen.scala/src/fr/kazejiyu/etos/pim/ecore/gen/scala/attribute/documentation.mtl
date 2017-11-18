@@ -21,11 +21,12 @@
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::annotations /]
 
-[template public genScalaDoc(anEAttribute: EAttribute) 
-	? (anEAttribute.hasAnnotatedDocumentation()) 
-	{ documentation: String = anEAttribute.genAnnotatedDocumentation(); }]
-[if (not documentation.contains('\n'))]/** [anEAttribute.genAnnotatedDocumentation()/] */
+[template public genScalaDoc(aModelElement: EModelElement) 
+	? (aModelElement.hasAnnotatedDocumentation()) 
+	{ documentation: String = aModelElement.genAnnotatedDocumentation(); }]
+[if (not documentation.contains('\n'))]/** [aModelElement.genAnnotatedDocumentation()/] */
 [else]/** 
- * [anEAttribute.genAnnotatedDocumentation().replaceAll('\n', ' * ')/] 
- */[/if]
+ * [aModelElement.genAnnotatedDocumentation().replaceAll('\n', ' * ')/] 
+ */
+[/if]
 [/template]
