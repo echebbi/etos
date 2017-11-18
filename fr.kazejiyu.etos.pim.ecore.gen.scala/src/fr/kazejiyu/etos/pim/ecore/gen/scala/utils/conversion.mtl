@@ -8,6 +8,10 @@
 [anEAttribute.eAttributeType.instanceClassName.genScalaType().genSimpleName()/]
 [/template]
 
+[template public genTypeName(anEParameter: EParameter)]
+[anEParameter.eType.instanceTypeName.genScalaType().genSimpleName()/]
+[/template]
+
 [template public genTypeName(anEClass: EClass) post(trim())]
 [anEClass.name.genSimpleName()/]
 [/template]

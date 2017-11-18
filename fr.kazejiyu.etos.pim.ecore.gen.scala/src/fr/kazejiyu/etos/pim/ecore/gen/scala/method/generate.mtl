@@ -43,5 +43,5 @@ def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameter
 
 [** Generates the parameters of a method */]
 [template private genParameters(anEOperation: EOperation) post(replaceAll('\n', ''))]
-[for( anEParameter: EParameter | anEOperation.eParameters) separator(', ')][anEParameter.name/]: [anEParameter.eType.instanceTypeName.genSimpleName()/][/for]
+[for( anEParameter: EParameter | anEOperation.eParameters) separator(', ')][anEParameter.name/]: [anEParameter.genTypeName()/][/for]
 [/template]
