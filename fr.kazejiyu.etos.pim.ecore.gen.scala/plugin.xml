@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.acceleo.engine.dynamic.templates">
+      <templates
+            path="src/fr/kazejiyu/etos/pim/ecore/gen/scala/main/">
+      </templates>
+      <generator
+            generatorID="fr.kazejiyu.etos.pim.ecore.gen.scala">
+      </generator>
+   </extension>
+
+</plugin>

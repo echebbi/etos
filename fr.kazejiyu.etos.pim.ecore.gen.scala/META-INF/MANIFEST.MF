@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Acceleo Scala Module Runtime Plug-in
-Bundle-SymbolicName: fr.kazejiyu.etos.pim.ecore.gen.scala
+Bundle-Name: Acceleo Ecore To Scala Module Runtime Plug-in
+Bundle-SymbolicName: fr.kazejiyu.etos.pim.ecore.gen.scala;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: fr.kazejiyu.etos.pim.ecore.gen.scala.Activator
 Bundle-Vendor: Eclipse Modeling Project
