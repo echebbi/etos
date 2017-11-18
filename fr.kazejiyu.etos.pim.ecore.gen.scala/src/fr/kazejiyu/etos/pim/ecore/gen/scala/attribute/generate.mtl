@@ -2,7 +2,7 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module names('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [template public genFieldName(anEAttribute: EAttribute) post(trim())]
 [anEAttribute.name.toLowerFirst()/]

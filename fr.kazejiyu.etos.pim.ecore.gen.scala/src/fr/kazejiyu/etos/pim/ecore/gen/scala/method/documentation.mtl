@@ -2,12 +2,12 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module documentation('http://www.eclipse.org/emf/2002/GenModel')]
+[module documentation('http://www.eclipse.org/emf/2002/Ecore')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
 
-[template public genClassScalaDoc(aGenClass: GenClass)]
+[template public genScalaDoc(anEOperation: EOperation)]
 /**
- * Documentation of [aGenClass.genClassName()/].
+ * Does ...
  */
 [/template]

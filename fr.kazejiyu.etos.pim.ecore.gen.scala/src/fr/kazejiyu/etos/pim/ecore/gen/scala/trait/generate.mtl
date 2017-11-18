@@ -2,7 +2,7 @@
 [**
  * The documentation of the module generate.
  */]
-[module scalaTrait('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::trait::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::trait::documentation /]

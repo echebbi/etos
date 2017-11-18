@@ -2,12 +2,12 @@
 [**
  * The documentation of the module generate.
  */]
-[module scalaClass('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::genAttribute /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::documentation /]
-[import fr::kazejiyu::etos::pim::ecore::gen::scala::method::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::method::genMethod /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::paths /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 

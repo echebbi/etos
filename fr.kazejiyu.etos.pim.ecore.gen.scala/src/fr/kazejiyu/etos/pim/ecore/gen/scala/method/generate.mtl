@@ -2,10 +2,10 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module names('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module genMethod('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
-[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::generate /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
 [** Generates class' getters */]
