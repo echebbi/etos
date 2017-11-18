@@ -32,7 +32,7 @@
  * Sets the [anEAttribute.name/].
  *
  * @param [anEAttribute.name/]
- *          The new [anEAttribute.name/].
+ *        The new [anEAttribute.name/].
  */
 [/template]
 
@@ -40,8 +40,8 @@
 /** 
  * Returns the [anEAttribute.name/].
  *
- * @return 
- *          The [anEAttribute.name/]. 
+ * @return
+ *        The [anEAttribute.name/]. 
  */
 [/template]
 
@@ -58,7 +58,7 @@
 
 [template private genParameterScalaDoc(anEParameter: EParameter)]
  * @param [anEParameter.name/]
- *          The [anEParameter.name/].
+ *        The [anEParameter.name/].
 [/template]
 
 [query private hasSeveralParameters(anEOperation: EOperation): Boolean =

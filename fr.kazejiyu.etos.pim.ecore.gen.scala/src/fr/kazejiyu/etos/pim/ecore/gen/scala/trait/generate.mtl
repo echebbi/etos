@@ -29,7 +29,7 @@
 [file (aGenClass.genFilePath(), false, 'UTF-8')]
 package [aGenClass.genPackage.basePackage/]
 
-[aGenClass.genScalaDoc()/]
+[aGenClass.genTraitScalaDoc()/]
 trait [aGenClass.genClassName()/] [aGenClass.genInheritance()/] {
    [aGenClass.genSignatures()/]
 }

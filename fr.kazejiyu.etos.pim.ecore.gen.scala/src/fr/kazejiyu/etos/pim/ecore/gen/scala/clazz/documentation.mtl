@@ -16,12 +16,13 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module documentation('http://www.eclipse.org/emf/2002/GenModel')]
+[module documentation('http://www.eclipse.org/emf/2002/GenModel', 'http://www.eclipse.org/emf/2002/Ecore')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::annotations /]
 
 [template public genClassScalaDoc(aGenClass: GenClass)]
 /**
- * Documentation of [aGenClass.genClassName()/].
+ * [if (aGenClass.hasAnnotatedDocumentation())][aGenClass.genAnnotatedDocumentation().replaceAll('\n', ' * *')/][else]Documentation of [aGenClass.genClassName()/][/if]
  */
 [/template]

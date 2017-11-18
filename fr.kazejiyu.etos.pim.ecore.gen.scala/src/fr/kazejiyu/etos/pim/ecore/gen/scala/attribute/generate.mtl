@@ -14,14 +14,16 @@
  */]
 [comment encoding = UTF-8 /]
 [**
- * Utility templates to deal with a file's path.
+ * Generate attribute-related Scala code.
  */]
 [module generate('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::documentation /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
 [template public genField(anEAttribute: EAttribute)]
+[anEAttribute.genScalaDoc()/]
 private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
 [/template]
 

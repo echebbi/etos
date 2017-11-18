@@ -31,7 +31,8 @@
 package [aGenClass.genPackage.basePackage/]
 
 [aGenClass.genClassScalaDoc()/]
-[aGenClass.genAbstract()/]class [aGenClass.genClassName()/]() [aGenClass.genInheritance()/] {
+[aGenClass.genAbstract()/]class [aGenClass.genClassName()/] [aGenClass.genInheritance()/] {
+
     [aGenClass.genFields()/]
 
     [aGenClass.genGetters()/]
@@ -78,5 +79,6 @@ extends [aGenClass.firstMixin().genTypeName()/][for (aMixin: EClass | aGenClass.
 [template private genFields(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
 [anEAttribute.genField()/]
+
 [/for]
 [/template]

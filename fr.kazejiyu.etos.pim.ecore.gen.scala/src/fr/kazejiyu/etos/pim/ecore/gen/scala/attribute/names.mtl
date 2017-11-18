@@ -14,7 +14,7 @@
  */]
 [comment encoding = UTF-8 /]
 [**
- * Utility templates to deal with a file's path.
+ * Generate attribute-related namess.
  */]
 [module names('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
