@@ -16,15 +16,3 @@ T[aGenClass.ecoreClass.name/]
 [aGenClass.ecoreClass.name/]
 [comment][aGenClass.genRoot()/]/[aGenClass.genPackage.basePackage.substituteAll('.', '/')/][/comment]
 [/template]
-
-[template public genFieldName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.name.toLowerFirst()/]
-[/template]
-
-[template public genSetterName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.genFieldName()/]_=
-[/template]
-
-[template public genGetterName(anEAttribute: EAttribute) post(trim())]
-[anEAttribute.genFieldName()/]
-[/template]

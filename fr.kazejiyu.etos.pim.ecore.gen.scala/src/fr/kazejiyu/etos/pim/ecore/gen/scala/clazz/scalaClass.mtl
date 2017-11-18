@@ -4,8 +4,10 @@
  */]
 [module scalaClass('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::attribute::genAttribute /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::documentation /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::method::names /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::paths /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
@@ -61,42 +63,6 @@ extends [aGenClass.firstMixin().genTypeName()/][for (aMixin: EClass | aGenClass.
 [** Generates the fields of a class */]
 [template private genFields(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
+[anEAttribute.genField()/]
 [/for]
-[/template]
-
-[** Generates either "val" or "var" according to field's visibility */]
-[template private genModifier(anEAttribute: EAttribute) post(trim())]
-[if (anEAttribute.unsettable)]val[else]var[/if]
-[/template]
-
-[** Generates class' getters */]
-[template private genGetters(aGenClass: GenClass) post(trim())]
-[for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttribute.genFieldName()/]
-[/for]
-[/template]
-
-[** Generates class' setters */]
-[template private genSetters(aGenClass: GenClass) post(trim())]
-[for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-[if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]
-[/for]
-[/template]
-
-[** Generates class' methods */]
-[template private genMethods(aGenClass: GenClass)]
-[for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
-def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameters()/])
-[/for]
-[/template]
-
-[** Generate "override" if the operation overrides a previous defined one */]
-[template private genOverride(anEOperation: EOperation) post(replaceAll('\n', ''))]
-[if (anEOperation.eContainingClass.eSuperTypes.eOperations->includes(anEOperation))]override [/if]
-[/template]
-
-[** Generates the parameters of a method */]
-[template private genParameters(anEOperation: EOperation) post(replaceAll('\n', ''))]
-[for( anEParameter: EParameter | anEOperation.eParameters) separator(', ')][anEParameter.name/]: [anEParameter.eType.instanceTypeName.genSimpleName()/][/for]
 [/template]

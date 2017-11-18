@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[**
+ * Utility templates to deal with a file's path.
+ */]
+[module documentation('http://www.eclipse.org/emf/2002/GenModel', 'http://www.eclipse.org/emf/2002/Ecore')]
+
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
+
+[template public genScalaDoc(anEAttribute: EAttribute) post(trim())]
+
+[/template]
