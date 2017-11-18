@@ -9,12 +9,13 @@
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::documentation /]
 
+[** Generates the .scala file corresponding to the class */]
 [template public genClassFile(aGenClass: GenClass)]
 [file (aGenClass.genFilePath(), false, 'UTF-8')]
 package [aGenClass.genPackage.basePackage/]
 
 [aGenClass.genClassScalaDoc()/]
-[aGenClass.genAbstract()/]class [aGenClass.genClassName()/]() {
+[aGenClass.genAbstract()/]class [aGenClass.genClassName()/]() [aGenClass.genInheritance()/] {
     [aGenClass.genFields()/]
 
     [aGenClass.genGetters()/]
@@ -25,26 +26,56 @@ package [aGenClass.genPackage.basePackage/]
 [/template]
 
 [** Generates "abstract" if the class is abstract */]
-[template private genAbstract(aGenClass: GenClass) post(trim())]
+[template private genAbstract(aGenClass: GenClass) post(replaceAll('\n', ''))]
 [if (aGenClass.ecoreClass.abstract)]abstract [/if]
 [/template]
 
+[** Generates inheritance */]
+[template private genInheritance(aGenClass: GenClass) post(trim())]
+[if (not aGenClass.ecoreClass.eSuperTypes->isEmpty())]
+[if (not aGenClass.parentClasses()->isEmpty())]
+extends [aGenClass.parentClasses()->first().genTypeName()/][for (aMixin: EClass | aGenClass.mixins())] with [aMixin.genTypeName()/][/for]
+[elseif (not aGenClass.mixins()->isEmpty())]
+extends [aGenClass.firstMixin().genTypeName()/][for (aMixin: EClass | aGenClass.mixins()->excluding(aGenClass.firstMixin()))] with [aMixin.genTypeName()/][/for]
+[/if]
+[/if]
+[/template]
+
+[** Queries the parent of a given class */]
+[query private parentClasses(aGenClass: GenClass): OrderedSet(EClass) = 
+	aGenClass.ecoreClass.eSuperTypes->reject(anEClass: EClass | anEClass.interface)
+/]
+
+[** Returns the first mixin used by the class */]
+[query private firstMixin(aGenClass: GenClass): EClass =
+	aGenClass.mixins()->first()
+/]
+
+[** Queries the mixins used by the class */]
+[query private mixins(aGenClass: GenClass): OrderedSet(EClass) =
+	aGenClass.ecoreClass.eSuperTypes->select(anEClass: EClass | anEClass.interface)
+/]
+
+[** Generates the fields of a class */]
 [template private genFields(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
 private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
 [/for]
 [/template]
 
+[** Generates either "val" or "var" according to field's visibility */]
 [template private genModifier(anEAttribute: EAttribute) post(trim())]
 [if (anEAttribute.unsettable)]val[else]var[/if]
 [/template]
 
+[** Generates class' getters */]
 [template private genGetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
 def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttribute.genFieldName()/]
 [/for]
 [/template]
 
+[** Generates class' setters */]
 [template private genSetters(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
 [if not (anEAttribute.unsettable)]def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/][/if]

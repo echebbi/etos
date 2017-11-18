@@ -8,6 +8,10 @@
 [anEAttribute.eAttributeType.instanceClassName.genScalaType().genSimpleName()/]
 [/template]
 
+[template public genTypeName(anEClass: EClass) post(trim())]
+[anEClass.name.genSimpleName()/]
+[/template]
+
 [template public genSimpleName(aString: String) post(trim())]
 [if (aString.contains('.'))][aString.substring(aString.lastIndex('.') + 1)/][else][aString/][/if]
 [/template]
