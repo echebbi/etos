@@ -15,6 +15,9 @@ package [aGenClass.genPackage.basePackage/]
 [aGenClass.genClassScalaDoc()/]
 [aGenClass.genAbstract()/]class [aGenClass.genClassName()/]() {
     [aGenClass.genFields()/]
+
+    [aGenClass.genGetters()/]
+    [aGenClass.genSetters()/]
 }
 [/file]
 [/template]
@@ -24,12 +27,24 @@ package [aGenClass.genPackage.basePackage/]
 [if (aGenClass.ecoreClass.abstract)]abstract [/if]
 [/template]
 
-[template private genFields(aGenClass: GenClass)]
+[template private genFields(aGenClass: GenClass) post(trim())]
 [for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
-[anEAttribute.genModifier()/] [anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceTypeName/] = [anEAttribute.defaultValue/]
+private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/] = [anEAttribute.defaultValue/]
 [/for]
 [/template]
 
 [template private genModifier(anEAttribute: EAttribute) post(trim())]
 [if (anEAttribute.unsettable)]val[else]var[/if]
+[/template]
+
+[template private genGetters(aGenClass: GenClass)]
+[for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
+def [anEAttribute.genGetterName()/]: [anEAttribute.eAttributeType.instanceClassName/] = [anEAttribute.genFieldName()/]
+[/for]
+[/template]
+
+[template private genSetters(aGenClass: GenClass)]
+[for (anEAttribute: EAttribute | aGenClass.ecoreClass.eAttributes)]
+def [anEAttribute.genSetterName()/]([anEAttribute.genFieldName()/]: [anEAttribute.eAttributeType.instanceClassName/]) = _[anEAttribute.genFieldName()/] = [anEAttribute.genFieldName()/]
+[/for]
 [/template]

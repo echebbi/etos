@@ -18,9 +18,13 @@ T[aGenClass.ecoreClass.name/]
 [/template]
 
 [template public genFieldName(anEAttribute: EAttribute) post(trim())]
-_[anEAttribute.name.toLowerFirst()/]
+[anEAttribute.name.toLowerFirst()/]
 [/template]
 
-[template public genType(anEAttribute: EAttribute) post(trim())]
+[template public genSetterName(anEAttribute: EAttribute) post(trim())]
+[anEAttribute.genFieldName()/]_=
+[/template]
 
+[template public genGetterName(anEAttribute: EAttribute) post(trim())]
+[anEAttribute.genFieldName()/]
 [/template]
