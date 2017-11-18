@@ -4,7 +4,7 @@
  */]
 [module documentation('http://www.eclipse.org/emf/2002/GenModel')]
 
-[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::names /]
+[import names /]
 
 [template public genClassScalaDoc(aGenClass: GenClass)]
 /**
