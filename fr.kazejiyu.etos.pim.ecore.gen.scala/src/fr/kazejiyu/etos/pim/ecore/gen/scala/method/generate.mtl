@@ -42,10 +42,19 @@ def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttrib
 [/template]
 
 [** Generates class' methods */]
+[template public genSignatures(aGenClass: GenClass)]
+[for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
+def [anEOperation.name/]([anEOperation.genParameters()/])
+[/for]
+[/template]
+
+[** Generates class' methods */]
 [template public genMethods(aGenClass: GenClass) post(trim())]
 [for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
 [anEOperation.genScalaDoc()/]
-def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameters()/])
+def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameters()/]) = {
+    ???
+}
 
 [/for]
 [/template]
