@@ -32,6 +32,7 @@ def [anEAttribute.genGetterName()/]: [anEAttribute.genTypeName()/] = _[anEAttrib
 [for (anEOperation: EOperation | aGenClass.ecoreClass.eOperations)]
 [anEOperation.genScalaDoc()/]
 def [anEOperation.genOverride()/][anEOperation.name/]([anEOperation.genParameters()/])
+
 [/for]
 [/template]
 

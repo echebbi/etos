@@ -9,13 +9,48 @@
 [template public genScalaDoc(anEOperation: EOperation)]
 /**
  * Does ...
- */
+ [if (anEOperation.hasParameters())][anEOperation.genParametersScalaDoc()/]
+ */[else] */[/if]
 [/template]
 
 [template public genSetterScalaDoc(anEAttribute: EAttribute)]
-/** Sets the value of [anEAttribute.name/] */
+/** 
+ * Sets the [anEAttribute.name/].
+ *
+ * @param [anEAttribute.name/]
+ *          The new [anEAttribute.name/].
+ */
 [/template]
 
 [template public genGetterScalaDoc(anEAttribute: EAttribute)]
-/** @return the value of [anEAttribute.name/] */
+/** 
+ * Returns the [anEAttribute.name/].
+ *
+ * @return 
+ *          The [anEAttribute.name/]. 
+ */
 [/template]
+
+[query private hasParameters(anEOperation: EOperation): Boolean =
+	not anEOperation.eParameters->isEmpty()
+/]
+
+[template private genParametersScalaDoc(anEOperation: EOperation)]
+ *
+[for (anEParameter: EParameter | anEOperation.eParameters)][if (anEOperation.hasSeveralParameters() and anEOperation.isLastParameter(anEParameter))]
+
+[/if][anEParameter.genParameterScalaDoc()/][/for]
+[/template]
+
+[template private genParameterScalaDoc(anEParameter: EParameter)]
+ * @param [anEParameter.name/]
+ *          The [anEParameter.name/].
+[/template]
+
+[query private hasSeveralParameters(anEOperation: EOperation): Boolean =
+	anEOperation.eParameters->size() > 1
+/]
+
+[query private isLastParameter(anEOperation: EOperation, anEParameter: EParameter): Boolean =
+	anEOperation.eParameters->last() = anEParameter
+/]
