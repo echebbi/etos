@@ -7,6 +7,8 @@ Bundle-Activator: fr.kazejiyu.etos.pim.ecore.gen.scala.Activator
 Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.core.runtime, 
  org.eclipse.emf.ecore,
+ org.eclipse.emf.codegen,
+ org.eclipse.emf.codegen.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
@@ -18,5 +20,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Export-Package: fr.kazejiyu.etos.pim.ecore.gen.scala.main
+Export-Package: fr.kazejiyu.etos.pim.ecore.gen.scala.clazz,
+ fr.kazejiyu.etos.pim.ecore.gen.scala.main
 

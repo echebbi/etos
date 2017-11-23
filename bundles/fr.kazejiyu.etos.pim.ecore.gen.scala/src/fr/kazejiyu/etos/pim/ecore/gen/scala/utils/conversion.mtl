@@ -38,6 +38,19 @@
 [if (aString.contains('.'))][aString.substring(aString.lastIndex('.') + 1)/][else][aString/][/if]
 [/template]
 
+[comment]
+
+upperBound > 1 :
+	unique: Set
+	ordered: List
+	unique && ordered: LinkedHashSet
+	
+(return type only) 
+	lowerBound == 0 && upperBound == 1
+		=> Option[N]
+
+[/comment]
+
 [template public genScalaType(aString: String) post(trim())]
 [if (aString = 'double')]scala.Double
 [elseif (aString = 'java.lang.Double')]scala.Double

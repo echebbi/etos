@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>fr.kazejiyu.etos</groupId>
+		<artifactId>fr.kazejiyu.etos.pim.ecore.gen.scala.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>	
+
+	<artifactId>fr.kazejiyu.etos.pim.ecore.gen.scala.features</artifactId>
+	<packaging>pom</packaging>
+	
+	<description>Maven modules describing etos' features.</description>
+
+	<modules>
+		<module>fr.kazejiyu.etos.pim.ecore.gen.scala.feature</module>
+		<module>fr.kazejiyu.etos.pim.ecore.gen.scala.ui.feature</module>
+	</modules>
+</project>

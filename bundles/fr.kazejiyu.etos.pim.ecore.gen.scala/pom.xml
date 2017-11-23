@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ###################################################################################################### -->
+	<!-- ###################################################################################################### -->
+	<!-- ###################################################################################################### -->
+	<!-- ###################################################################################################### -->
+
+	<!-- The maven integration will be improved so keep an eye on the Acceleo 
+		wiki: http://wiki.eclipse.org/Acceleo/Maven -->
+
+	<!-- ###################################################################################################### -->
+	<!-- ###################################################################################################### -->
+	<!-- ###################################################################################################### -->
+
+	<parent>
+		<groupId>fr.kazejiyu.etos</groupId>
+		<artifactId>fr.kazejiyu.etos.pim.ecore.gen.scala.bundles</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>fr.kazejiyu.etos.pim.ecore.gen.scala</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<build>
+		<plugins>
+			<!-- Launch compilation of Accelo templates at compile goal -->
+			<plugin>
+				<groupId>org.eclipse.acceleo</groupId>
+				<artifactId>org.eclipse.acceleo.maven</artifactId>
+				<version>3.5.2</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>acceleo-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<useBinaryResources>false</useBinaryResources>
+					<usePlatformResourcePath>true</usePlatformResourcePath>
+					<acceleoProject>
+						<root>${project.basedir}</root>
+						<entries>
+							<entry>
+								<input>src</input>
+								<output>target/classes</output>
+							</entry>
+						</entries>
+					</acceleoProject>
+					<packagesToRegister>
+						<!-- The meta-models used by etos -->
+						<packageToRegister>org.eclipse.emf.ecore.EcorePackage</packageToRegister>
+						<packageToRegister>org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage</packageToRegister>
+					</packagesToRegister>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

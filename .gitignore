@@ -24,3 +24,12 @@ hs_err_pid*
 # Eclipse IDE related files
 bin/
 tasks/
+target
+/.settings
+/bundles/.settings
+/features/.settings
+/releng/.settings
+/.project
+/bundles/.project
+/features/.project
+/releng/.project

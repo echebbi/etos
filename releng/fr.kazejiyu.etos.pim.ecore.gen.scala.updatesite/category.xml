@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/fr.kazejiyu.etos.pim.ecore.gen.scala.feature_1.0.0.qualifier.jar" id="fr.kazejiyu.etos.pim.ecore.gen.scala.feature" version="1.0.0.qualifier">
+      <category name="fr.kazejiyu.etos.pim.ecore.gen.scala.category.id"/>
+   </feature>
+   <feature url="features/fr.kazejiyu.etos.pim.ecore.gen.scala.ui.feature_1.0.0.qualifier.jar" id="fr.kazejiyu.etos.pim.ecore.gen.scala.ui.feature" version="1.0.0.qualifier">
+      <category name="fr.kazejiyu.etos.pim.ecore.gen.scala.category.id"/>
+   </feature>
+   <category-def name="fr.kazejiyu.etos.pim.ecore.gen.scala.category.id" label="ETOS">
+      <description>
+         An Ecore To Scala converter, written with Acceleo.
+      </description>
+   </category-def>
+</site>
