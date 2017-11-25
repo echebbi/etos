@@ -31,7 +31,7 @@
 package [aGenClass.genPackage.basePackage/]
 
 [aGenClass.genClassScalaDoc()/]
-[aGenClass.genAbstract()/]class [aGenClass.genClassName()/] [aGenClass.genInheritance()/] {
+[aGenClass.genAbstract()/]class [aGenClass.genClassName()/] [aGenClass.genInheritance()/] [aGenClass.genGeneric()/] {
 
     [aGenClass.genFields()/]
 

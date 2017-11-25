@@ -30,7 +30,7 @@
 package [aGenClass.genPackage.basePackage/]
 
 [aGenClass.genTraitScalaDoc()/]
-trait [aGenClass.genClassName()/] [aGenClass.genInheritance()/] {
+trait [aGenClass.genClassName()/] [aGenClass.genInheritance()/] [aGenClass.genGeneric()/] {
    [aGenClass.genSignatures()/]
 }
 [/file]

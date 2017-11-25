@@ -18,6 +18,8 @@
  */]
 [module conversion('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::strutils /]
+
 [** Generates the appropriate type of anETypedElement. */]
 [template public genTypeName(anETypedElement: ETypedElement) post(trim())]
 [anETypedElement.genScalaType()/]
@@ -96,3 +98,16 @@
 [else][aString /]
 [/if]
 [/template]
+
+[** Generates Scala generic marker : <T> */]
+[template public genGeneric(aGenClass: GenClass) post(trimNewLines())]
+[if (aGenClass.ecoreClass.isGeneric())]
+[for (anETypeParameter : ETypeParameter | aGenClass.ecoreClass.eTypeParameters) before('[') separator(',') after(']')]
+[anETypeParameter.name/]
+[/for]
+[/if]
+[/template]
+
+[query private isGeneric(anEClass: EClass): Boolean =
+	not anEClass.eTypeParameters->isEmpty()
+/]
