@@ -20,6 +20,7 @@
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::generate /]
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::trait::generate /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::enumeration::generate /]
 
 [**
  * The documentation of the template generateElement.
@@ -33,5 +34,9 @@
 	[else]
 		[aGenClass.genClassFile()/]
 	[/if]
+[/for]
+
+[for (aGenEnum: GenEnum | aGenModel.genPackages.genEnums)]
+		[aGenEnum.genEnumFile()/]
 [/for]
 [/template]

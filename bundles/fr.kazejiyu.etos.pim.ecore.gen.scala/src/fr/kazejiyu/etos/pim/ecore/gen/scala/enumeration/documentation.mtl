@@ -16,17 +16,13 @@
 [**
  * Utility templates to deal with a file's path.
  */]
-[module names('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
+[module documentation('http://www.eclipse.org/emf/2002/GenModel', 'http://www.eclipse.org/emf/2002/Ecore')]
 
-[template private genName(anEClassifier: EClassifier)]
-[anEClassifier.name.toUpperFirst()/]
-[/template]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::enumeration::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::annotations /]
 
-[template public genTraitName(aGenClass: GenClass)]
-T[aGenClass.ecoreClass.name/]
-[/template]
-
-[template public genClassName(aGenClass: GenClass) post(trim())]
-[aGenClass.ecoreClass.name/]
-[comment][aGenClass.genRoot()/]/[aGenClass.genPackage.basePackage.substituteAll('.', '/')/][/comment]
+[template public genClassScalaDoc(aGenEnum: GenEnum)]
+/**
+ * [if (aGenEnum.hasAnnotatedDocumentation())][aGenEnum.genAnnotatedDocumentation().replaceAll('\n', ' * *')/][else]Documentation of [aGenEnum.genEnumName()/][/if]
+ */
 [/template]

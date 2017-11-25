@@ -19,16 +19,20 @@
 [module paths('http://www.eclipse.org/emf/2002/GenModel')]
 
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::clazz::names /]
+[import fr::kazejiyu::etos::pim::ecore::gen::scala::enumeration::names /]
 
-[template private genRoot(aGenClass: GenClass)]
+[template private genRoot(aGenClass: GenDataType)]
 [aGenClass.genPackage.genModel.modelDirectory/]
 [/template]
 
 [template public genClassPath(aGenClass: GenClass)]
-[comment][aGenClass.genRoot()/]/[/comment]
 [aGenClass.genPackage.basePackage/]
 [/template]
 
-[template public genFilePath(aGenClass : GenClass) post(replaceAll('\n', '').trim())]
+[template public genFilePath(aGenClass: GenClass) post(replaceAll('\n', '').trim())]
 [aGenClass.genPackage.basePackage.substituteAll('.', '/')/]/[aGenClass.genClassName()/].scala
+[/template]
+
+[template public genFilePath(aGenEnum: GenEnum) post(replaceAll('\n', '').trim())]
+[aGenEnum.genPackage.basePackage.substituteAll('.', '/')/]/[aGenEnum.genEnumName()/].scala
 [/template]
