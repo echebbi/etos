@@ -23,7 +23,7 @@
 [import fr::kazejiyu::etos::pim::ecore::gen::scala::utils::conversion /]
 
 [template public genField(anEAttribute: EAttribute)]
-[anEAttribute.genScalaDoc()/]private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.defaultValue/]
+[anEAttribute.genScalaDoc()/]private [anEAttribute.genModifier()/] _[anEAttribute.genFieldName()/]: [anEAttribute.genTypeName()/] = [anEAttribute.genDefaultValue()/]
 [/template]
 
 [template public genField(anEReference: EReference)]

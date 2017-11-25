@@ -18,39 +18,74 @@
  */]
 [module conversion('http://www.eclipse.org/emf/2002/Ecore', 'http://www.eclipse.org/emf/2002/GenModel')]
 
-[template public genTypeName(anEAttribute: EAttribute)]
-[anEAttribute.eType.instanceClassName.genScalaType().genSimpleName()/]
+[** Generates the appropriate type of anETypedElement. */]
+[template public genTypeName(anETypedElement: ETypedElement) post(trim())]
+[anETypedElement.genScalaType()/]
 [/template]
 
-[template public genTypeName(anEReference: EReference)]
+[** Generates the appropriate type if anEClass. */]
+[template public genTypeName(anEClass: EClass) post(trim())]
+[anEClass.name/]
+[/template]
+
+[** Modify the absolute class path aString to keep only the name of the class. */] 
+[template private genSimpleName(aString: String) post(trim())]
+[if (aString.contains('.'))]
+	[aString.substring(aString.lastIndex('.') + 1)/]
+[else]
+	[aString/]
+[/if]
+[/template]
+
+[** Generates the Scala type corresponding to anETypedElement's type. */]
+[template private genScalaType(anETypedElement: ETypedElement) post(trim())]
+[if (anETypedElement.lowerBound = 0 and anETypedElement.upperBound = 1)]
+	Option['['/][anETypedElement.genDecl()/][']'/]
+[elseif (anETypedElement.upperBound > 1)]
+	[if (anETypedElement.ordered and anETypedElement.unique)]
+		LinkedHashSet['['/][anETypedElement.genDecl()/][']'/]
+	[elseif (anETypedElement.ordered)]
+		List['['/][anETypedElement.genDecl()/][']'/]
+	[elseif (anETypedElement.unique)]
+		Set['['/][anETypedElement.genDecl()/][']'/]
+	[/if]
+[else]
+	[anETypedElement.genDecl()/]
+[/if]
+[/template]
+
+[comment]TODO Auto-import required classes to avoid using absolute classes' absolute path[/comment]
+[template private genDecl(anETypedElement: ETypedElement) post(trim())]
+[anETypedElement.eType.instanceTypeName.genScalaType()/]
+[comment][anETypedElement.eType.instanceTypeName.genScalaType().genSimpleName()/][/comment]
+[/template]
+
+[template private genDecl(anEReference: EReference) post(trim())]
 [anEReference.eReferenceType.name.genScalaType().genSimpleName()/]
 [/template]
 
-[template public genTypeName(anEParameter: EParameter)]
-[anEParameter.eType.instanceTypeName.genScalaType().genSimpleName()/]
+[** Generates the default value of anEAttribute. */]
+[template public genDefaultValue(anEAttribute: EAttribute) post(trim())]
+[if (anEAttribute.lowerBound = 0 and anEAttribute.upperBound = 1)]
+	[if (anEAttribute.defaultValue.oclIsUndefined())]
+		None
+	[else]
+		Some([anEAttribute.defaultValueLiteral/])
+	[/if]
+[elseif (anEAttribute.upperBound > 1)]
+	[if (anEAttribute.ordered and anEAttribute.unique)]
+		LinkedHashSet()
+	[elseif (anEAttribute.ordered)]
+		List()
+	[elseif (anEAttribute.unique)]
+		Set()
+	[/if]
+[else]
+	[anEAttribute.defaultValueLiteral/]
+[/if]
 [/template]
 
-[template public genTypeName(anEClass: EClass) post(trim())]
-[anEClass.name.genSimpleName()/]
-[/template]
-
-[template public genSimpleName(aString: String) post(trim())]
-[if (aString.contains('.'))][aString.substring(aString.lastIndex('.') + 1)/][else][aString/][/if]
-[/template]
-
-[comment]
-
-upperBound > 1 :
-	unique: Set
-	ordered: List
-	unique && ordered: LinkedHashSet
-	
-(return type only) 
-	lowerBound == 0 && upperBound == 1
-		=> Option[N]
-
-[/comment]
-
+[** Turns the type aString into a right Scala one. */]
 [template public genScalaType(aString: String) post(trim())]
 [if (aString = 'double')]scala.Double
 [elseif (aString = 'java.lang.Double')]scala.Double
