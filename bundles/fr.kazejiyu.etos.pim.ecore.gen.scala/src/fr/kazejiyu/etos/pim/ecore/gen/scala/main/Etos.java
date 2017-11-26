@@ -265,7 +265,7 @@ public class Etos extends AbstractAcceleoGenerator {
      * 
      * @return The list of properties file we need to add to the generation context.
      * @see java.util.ResourceBundle#getBundle(String)
-     * @generated
+     * @generated NOT
      */
     @Override
     public List<String> getProperties() {
@@ -303,6 +303,8 @@ public class Etos extends AbstractAcceleoGenerator {
          * 
          * To learn more about Properties Files, have a look at the Acceleo documentation (Help -> Help Contents).
          */
+    	propertiesFiles.add("fr.kazejiyu.etos.pim.ecore.gen.scala.properties/conversion");
+    	propertiesFiles.add("fr.kazejiyu.etos.pim.ecore.gen.scala.properties/values");
         return propertiesFiles;
     }
     

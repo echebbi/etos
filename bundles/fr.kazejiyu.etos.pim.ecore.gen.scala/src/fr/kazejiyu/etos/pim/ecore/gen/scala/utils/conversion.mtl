@@ -87,33 +87,39 @@
 [/if]
 [/template]
 
+[** Returns the property corresponding to the default type of anEAttribute, or null if no property has been defined */]
 [template private genDefaultPrimitiveValue(anEAttribute: EAttribute) post(trim())]
 [let type: String = anEAttribute.genDecl().genSimpleName()]
-[if (Sequence{'Double', 'Float', 'Int'}->includes(type))]
-	0
-[elseif (type = 'String')]
-	""
-[else]
+[if (type.defaultScalaValue() = '')]
 	null
+[else]
+	[type.defaultScalaValue()/]
 [/if]
 [/let]
 [/template]
 
+[** Returns the property defining the default value of the type aString */]
+[query private defaultScalaValue(aString: String): String = 
+	getProperty('default-value_' + aString)
+/]
+
+[** Returns whether the model defines a default value for anEAttribute */]
 [query private hasDefaultValue(anEAttribute: EAttribute): Boolean =
 	not anEAttribute.defaultValue.oclIsUndefined()
 /]
 
 [** Turns the type aString into a right Scala one. */]
 [template public genScalaType(aString: String) post(trim())]
-[if (aString = 'double')]scala.Double
-[elseif (aString = 'java.lang.Double')]scala.Double
-[elseif (aString = 'int')]scala.Int
-[elseif (aString = 'java.lang.Int')]scala.Int
-[elseif (aString = 'float')]scala.Float
-[elseif (aString = 'java.lang.Float')]scala.Float
-[else][aString /]
+[if (aString.scalaType() = '')]
+	[aString/]
+[else]
+	[scalaType(aString)/]
 [/if]
 [/template]
+
+[query private scalaType(aString: String): String = 
+	getProperty('to-scala-type_' + aString)
+/]
 
 [** Generates Scala generic marker : <T> */]
 [template public genGeneric(aGenClass: GenClass) post(trimNewLines())]
